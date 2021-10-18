@@ -1,0 +1,16 @@
+
+{% extends 'base.html' %}
+
+
+{% block 'content' %}
+<div class="container">
+    {% if request.user.is_authenticated %}
+        <h2 class="display-4 text-center">Welcome {{ request.user.get_full_name }}</h2>
+    {% endif  %}
+
+</div>
+
+<h1>food ordering website project</h1>
+
+{% endblock 'content' %}
+

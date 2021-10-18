@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block 'content' %}
+
+<div class="container">
+    <h1 class="mt-3 display-5 text-center text-info"> '{{ user.username }}' account</h1><br>
+    <div class="p-3 mb-2">
+        <a href="{% url 'home.change_username' %}" class="link-primary me-2 fw-bold">Change Username</a>
+        <a href="{% url 'home.change_password' %}" class="link-warning me-2 fw-bold">Change Password</a>
+        <a href="{% url 'home.delete_account' %}" class="link-danger fw-bold">Delete Account</a>
+    </div>
+    <div>
+        <form method="post"> {% csrf_token %}
+            {% if err_message %}
+                <h2 class="text-center text-danger">{{ err_message }}</h2>
+            {% endif  %}
+            {% if success_message %}
+                <h2 class="text-center text-success">{{ success_message }}</h2>
+            {% endif  %}
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{ user.get_full_name }}" >
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone No</label>
+                <input type="text" class="form-control" id="phone" name="phone" value="{{ profile.phone_no }}" >
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                       name="email" value="{{ user.email }}" >
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="place" class="form-label">Your Place</label>
+                <input type="text" class="form-control" id="place" name="place"  value="{{ profile.place }}" >
+            </div>
+            <div class="mb-3">
+                <label for="pin" class="form-label">Pin</label>
+                <input type="text" class="form-control" id="pin" name="pin" value="{{ profile.pin }}" >
+            </div>
+
+            <button type="submit" class="btn btn-warning">Update</button>
+        </form>
+    </div>
+    <br><br>
+</div>
+
+{% endblock 'content' %}

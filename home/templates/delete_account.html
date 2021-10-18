@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block 'content' %}
+
+<div class="container">
+    <h1 class="mt-3 display-5 text-center text-danger fw-bold"> Delete Your Account</h1><br>
+
+    <div>
+        <form method="post"> {% csrf_token %}
+            {% if err_message %}
+                <h2 class="text-center text-danger">{{ err_message }}</h2>
+            {% endif  %}
+            {% if success_message %}
+                <h2 class="text-center text-success">{{ success_message }}</h2>
+            {% endif  %}
+            <div class="mb-3">
+                <input type="password" class="form-control"  name="password" placeholder="Enter password to verify" >
+            </div>
+            <button type="submit" class="btn btn-danger">DELETE</button>
+        </form>
+    </div>
+    <br><br>
+</div>
+
+{% endblock 'content' %}
