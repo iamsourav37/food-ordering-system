@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Food
 from order.models import Order
 from customer.models import Profile
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -12,6 +13,7 @@ def food_list(request):
     return render(request, "food_list.html", context)
 
 
+@login_required(login_url='home.login')
 def orders(request):
     context = {}
     user = Profile.objects.get(user=request.user)
