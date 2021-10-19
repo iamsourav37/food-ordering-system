@@ -16,7 +16,7 @@ class Order(models.Model):
     food_details = models.ForeignKey(Food, on_delete=models.DO_NOTHING)
     order_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True,)
     created_at = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=100, choices=STATUS_TYPE, default=STATUS_TYPE[0])
+    status = models.CharField(max_length=100, choices=STATUS_TYPE, default=STATUS_TYPE[0][0])
 
     def __str__(self):
         return f"{self.created_at}, {self.status}"

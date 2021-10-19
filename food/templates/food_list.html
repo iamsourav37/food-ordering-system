@@ -4,7 +4,8 @@
 {% block 'content' %}
 <div class="container p-3 mt-3 mb-4">
     {% if request.user.is_authenticated %}
-    <h2 class="display-5 text-center text-success">Hay <span class="fw-bold">{{ request.user.first_name }}</span>, Order your favorite food.</h2>
+    <h2 class="display-5 text-center text-success">Hay <span class="fw-bold">{{ request.user.first_name }}</span>, Order
+        your favorite food.</h2>
     {% else %}
     <h1 class="text-success display-4 text-center">Order your favorite food.</h1>
     <h4 class=" text-warning">First create an account, then order</h4>
@@ -21,7 +22,9 @@
             <th scope="col">Food Name</th>
             <th scope="col">Description</th>
             <th scope="col">Price</th>
-            <th scope="col">Order</th>
+            {% if request.user.is_authenticated %}
+                <th scope="col">Order</th>
+            {% endif %}
         </tr>
         </thead>
 
@@ -32,9 +35,14 @@
             <td>{{ food.name }}</td>
             <td>{{ food.desc }}</td>
             <td>₹ {{ food.price }}</td>
+            {% if request.user.is_authenticated %}
             <td>
-                <button type="button" class="btn btn-warning">Order</button>
+                <form method="post" action="{% url 'food.order_food' food.id %}"> {% csrf_token %}
+                    <button type="submit" class="btn btn-warning">Order</button>
+                </form>
             </td>
+            {% endif %}
+
         </tr>
         </tbody>
         {% endfor %}
