@@ -26,18 +26,20 @@
                     <a class="nav-link" href="{% url 'home.home' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'home.food_list' %}">Food List</a>
-                </li>
-
-                <li class="nav-item">
                     <a class="nav-link" href="{% url 'home.contact' %}">Contact</a>
                 </li>
-
-                {% if request.user.is_authenticated %}
-              <li class="nav-item">
-                    <a class="nav-link" href="{% url 'home.account' %}">Account</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'food.food_list' %}">Food List</a>
                 </li>
 
+
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home.account' %}">Account</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'food.orders' %}">Orders</a>
+                </li>
                 <li class="nav-item ms-5">
                     <a class="nav-link btn btn-secondary text-white" href="{% url 'home.logout' %}">Logout</a>
                 </li>

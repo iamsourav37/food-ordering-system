@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+
+{% block 'content' %}
+<div class="container p-3 mt-3">
+    {% if request.user.is_authenticated %}
+    <h2 class="display-5 text-center text-success">{{ request.user.first_name }} Your orders</h2>
+    {% else %}
+    <h1 class="text-success display-4 text-center">Order your favorite food.</h1>
+    <h4 class=" text-warning">First create an account, then order</h4>
+    {% endif %}
+</div>
+
+{% if orders %}
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Food Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Status</th>
+            <th scope="col">Order At</th>
+        </tr>
+        </thead>
+
+        {% for order in orders %}
+        <tbody>
+        <tr>
+            <td>{{ order.order_id }}</td>
+            <td>{{ order.food_details.name }}</td>
+            <td>{{ order.food_details.price }}</td>
+            <td>{{ order.status }}</td>
+            <td>{{ order.created_at }}</td>
+
+        </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+</div>
+{% else %}
+<div class="container">
+    <h2 class="display-3">Not order yet</h2>
+</div>
+{% endif %}
+
+
+{% endblock 'content' %}
+

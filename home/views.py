@@ -12,10 +12,6 @@ def index(request):
     return render(request, 'index.html')
 
 
-def food_list(request):
-    return render(request, "food_list.html")
-
-
 def contact(request):
     if request.method == 'POST':
         print("post request handle here.....")
